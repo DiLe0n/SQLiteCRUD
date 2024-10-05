@@ -17,10 +17,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 // Crear la base de datos
-        database = openOrCreateDatabase("mi_base_de_datos", Context.MODE_PRIVATE, null)
+       database = openOrCreateDatabase("mi_base_de_datos", Context.MODE_PRIVATE, null)
 
 // Crear la tabla
-        database.execSQL("CREATE TABLE usuarios (id INTEGER PRIMARY KEY, nombre TEXT, correo TEXT)")
+        database.execSQL("CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY, nombre TEXT,correoTEXT)")
 
 // Agregar código para crear registros
         val botonCrear = findViewById<Button>(R.id.botonCrear)
@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         botonLeer.setOnClickListener {
 // Consultar todos los registros
             val cursor = database.rawQuery("SELECT * FROM usuarios", null)
+            print(cursor)
 
 // Recorrer los registros
 
